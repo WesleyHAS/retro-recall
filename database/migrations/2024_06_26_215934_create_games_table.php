@@ -12,7 +12,7 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->integer('release_year')->nullable();
+            $table->date('release_date');
             // Add any other fields as needed
             $table->timestamps();
         });

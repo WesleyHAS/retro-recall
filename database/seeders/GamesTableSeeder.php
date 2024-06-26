@@ -18,7 +18,7 @@ class GamesTableSeeder extends Seeder
         Game::create([
             'title' => 'Game Title',
             'description' => 'Description of the game.',
-            'release_year' => 2023,
+            'release_date' => '2023-01-02',
             // Add other fields as needed
         ]);
 
