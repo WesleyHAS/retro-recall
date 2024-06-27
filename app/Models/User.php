@@ -47,6 +47,6 @@ class User extends Authenticatable
      */
     public function games()
     {
-        return $this->belongsToMany(Game::class, 'user_games'); // Adjust if you have a different pivot table name
-    }
+        return $this->belongsToMany(Game::class, 'user_games')->withPivot('status', 'rating', 'started_at', 'finished_at');
+    }    
 }

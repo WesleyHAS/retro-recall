@@ -13,13 +13,18 @@
     @if ($games->isEmpty())
         <p>You have no games in your list.</p>
     @else
-        <ul>
+        <ul class="list-group">
             @foreach ($games as $game)
-                <li>
-                    {{ $game->title }} - Released: {{ $game->release_date }}
+                <li class="list-group-item">
+                    <h5>{{ $game->title }}</h5>
+                    <p>Released: {{ $game->release_date }}</p>
+                    <p>Status: {{ $game->pivot->status }}</p>
+                    <p>Rating: {{ $game->pivot->rating }}</p>
+                    <p>Started at: {{ $game->pivot->started_at }}</p>
+                    <p>Finished at: {{ $game->pivot->finished_at }}</p>
                     <form action="{{ route('my-games.remove', $game->id) }}" method="POST" style="display:inline;">
                         @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">-</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                     </form>
                 </li>
             @endforeach
