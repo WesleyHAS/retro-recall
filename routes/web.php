@@ -35,6 +35,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/my-games', [UserController::class, 'myGames'])->name('my-games')->middleware('auth');
 Route::post('/my-games/remove/{id}', [UserController::class, 'removeFromUserGames'])->name('my-games.remove')->middleware('auth');
+Route::post('/my-games/comments/{id}', [UserController::class, 'updateComments'])->name('my-games.comments')->middleware('auth');
 
 
 Route::get('/', function () {

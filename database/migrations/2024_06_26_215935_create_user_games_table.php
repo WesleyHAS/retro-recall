@@ -16,6 +16,7 @@ class CreateUserGamesTable extends Migration
             $table->integer('rating')->nullable();
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finished_at')->nullable();
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

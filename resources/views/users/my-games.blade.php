@@ -22,6 +22,7 @@
                     <p>Rating: {{ $game->pivot->rating }}</p>
                     <p>Started at: {{ $game->pivot->started_at }}</p>
                     <p>Finished at: {{ $game->pivot->finished_at }}</p>
+                    <p>Comments: {{ $game->pivot->comments }}</p>
                     <form action="{{ route('my-games.remove', $game->id) }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="btn btn-danger btn-sm">Remove</button>
@@ -32,3 +33,5 @@
     @endif
 </div>
 @endsection
+
+
