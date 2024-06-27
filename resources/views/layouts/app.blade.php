@@ -15,18 +15,39 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item {{ request()->is('games') ? 'active' : '' }}">
-                  <a class="nav-link" href="{{ route('games.index') }}">Games</a>
-                </li>
+                    <li class="nav-item {{ request()->is('games') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('games.index') }}">Games</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
-                    </li>
-                </ul>
+    @guest
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
+        </li>
+    @else
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ Auth::user()->name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('my-games') }}">My Games</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </li>
+    @endguest
+</ul>
+
             </div>
         </div>
     </nav>

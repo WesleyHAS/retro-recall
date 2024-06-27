@@ -10,13 +10,12 @@ class CreateUserGamesTable extends Migration
     {
         Schema::create('user_games', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('game_id');
-            $table->integer('score')->nullable();
-            // Add any other fields as needed
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('game_id')->constrained()->onDelete('cascade');
+            $table->string('status')->nullable();
+            $table->integer('rating')->nullable();
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });
     }
@@ -26,3 +25,4 @@ class CreateUserGamesTable extends Migration
         Schema::dropIfExists('user_games');
     }
 }
+

@@ -1,7 +1,5 @@
 <?php
 
-// app/Models/Game.php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,5 +19,11 @@ class Game extends Model
         'description',
     ];
 
-    // Relationships, methods, or other logic can be added here
+    /**
+     * The users that belong to the game.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_games'); // Adjust if you have a different pivot table name
+    }
 }
