@@ -19,8 +19,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'email_verified_at', // Add this line
-        'remember_token', // Add this line
+        'email_verified_at', // Added for email verification
+        'remember_token', // Added for remember token
     ];
 
     /**
@@ -34,15 +34,19 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Get the games associated with the user.
+     */
+    public function games()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsToMany(Game::class, 'user_games'); // Adjust if you have a different pivot table name
     }
 }
